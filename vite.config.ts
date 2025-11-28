@@ -1,6 +1,8 @@
+import {PrimeVueResolver} from '@primevue/auto-import-resolver';
 import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
 import path from "node:path";
+import Components from 'unplugin-vue-components/vite';
 import {defineConfig} from "vite";
 
 const host = process.env.TAURI_DEV_HOST;
@@ -8,7 +10,10 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(async () => ({
 	plugins: [
 		vue(),
-		tailwindcss()
+		tailwindcss(),
+		Components({
+			resolvers: [PrimeVueResolver()]
+		})
 	],
 	clearScreen: false,
 	server: {
